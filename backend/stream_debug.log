@@ -1,0 +1,379 @@
+[6871.05] Creating engine for __default__
+[6871.06] Starting new broadcast loop task for __default__ (previous task: None)
+[6871.06] Broadcast loop running for __default__
+[6872.35] Added connection for __default__. Total: 1
+[6872.36] Broadcast loop task for __default__ already running
+[6872.38] Added connection for __default__. Total: 2
+[6872.38] Broadcast loop task for __default__ already running
+[6872.40] Added connection for __default__. Total: 3
+[6872.40] Broadcast loop task for __default__ already running
+[6872.41] Creating engine for 8f65f9c27b21
+[6872.42] Added connection for 8f65f9c27b21. Total: 1
+[6872.42] Starting new broadcast loop task for 8f65f9c27b21 (previous task: None)
+[6872.42] Broadcast loop running for 8f65f9c27b21
+[6872.42] CRITICAL: Broadcast loop crashed for 8f65f9c27b21: IndexError: single positional indexer is out-of-bounds
+[6872.43] Creating engine for aeed720911ec
+[6872.44] Added connection for aeed720911ec. Total: 1
+[6872.44] Starting new broadcast loop task for aeed720911ec (previous task: None)
+[6872.44] Broadcast loop running for aeed720911ec
+[6872.44] CRITICAL: Broadcast loop crashed for aeed720911ec: IndexError: single positional indexer is out-of-bounds
+[6872.45] Added connection for __default__. Total: 4
+[6872.45] Broadcast loop task for __default__ already running
+[6872.47] Added connection for __default__. Total: 5
+[6872.47] Broadcast loop task for __default__ already running
+[6872.97] Broadcasting packet to 5 clients on __default__
+[6872.97] Successfully sent json to ws on __default__
+[6872.98] Successfully sent json to ws on __default__
+[6872.98] Successfully sent json to ws on __default__
+[6872.98] Successfully sent json to ws on __default__
+[6872.98] Successfully sent json to ws on __default__
+[6873.61] Broadcasting packet to 5 clients on __default__
+[6873.61] Successfully sent json to ws on __default__
+[6873.61] Successfully sent json to ws on __default__
+[6873.61] Successfully sent json to ws on __default__
+[6873.62] Successfully sent json to ws on __default__
+[6873.62] Successfully sent json to ws on __default__
+[6874.25] Broadcasting packet to 5 clients on __default__
+[6874.25] Successfully sent json to ws on __default__
+[6874.26] Successfully sent json to ws on __default__
+[6874.26] Successfully sent json to ws on __default__
+[6874.26] Successfully sent json to ws on __default__
+[6874.26] Successfully sent json to ws on __default__
+[6874.34] Added connection for __default__. Total: 6
+[6874.34] Broadcast loop task for __default__ already running
+[6874.89] Broadcasting packet to 6 clients on __default__
+[6874.89] Successfully sent json to ws on __default__
+[6874.89] Successfully sent json to ws on __default__
+[6874.89] Successfully sent json to ws on __default__
+[6874.89] Successfully sent json to ws on __default__
+[6874.90] Successfully sent json to ws on __default__
+[6874.90] Successfully sent json to ws on __default__
+[6875.53] Broadcasting packet to 5 clients on __default__
+[6875.53] Successfully sent json to ws on __default__
+[6875.53] Successfully sent json to ws on __default__
+[6875.53] Successfully sent json to ws on __default__
+[6875.53] Successfully sent json to ws on __default__
+[6875.54] Successfully sent json to ws on __default__
+[6876.16] Broadcasting packet to 5 clients on __default__
+[6876.16] Successfully sent json to ws on __default__
+[6876.17] Successfully sent json to ws on __default__
+[6876.17] Successfully sent json to ws on __default__
+[6876.17] Successfully sent json to ws on __default__
+[6876.17] Successfully sent json to ws on __default__
+[6876.80] Broadcasting packet to 5 clients on __default__
+[6876.81] Successfully sent json to ws on __default__
+[6876.81] Successfully sent json to ws on __default__
+[6876.81] Successfully sent json to ws on __default__
+[6876.81] Successfully sent json to ws on __default__
+[6876.81] Successfully sent json to ws on __default__
+[6877.45] Broadcasting packet to 5 clients on __default__
+[6877.45] Successfully sent json to ws on __default__
+[6877.45] Successfully sent json to ws on __default__
+[6877.45] Successfully sent json to ws on __default__
+[6877.45] Successfully sent json to ws on __default__
+[6877.45] Successfully sent json to ws on __default__
+[6878.08] Broadcasting packet to 5 clients on __default__
+[6878.08] Successfully sent json to ws on __default__
+[6878.08] Successfully sent json to ws on __default__
+[6878.08] Successfully sent json to ws on __default__
+[6878.09] Successfully sent json to ws on __default__
+[6878.09] Successfully sent json to ws on __default__
+[6878.72] Broadcasting packet to 5 clients on __default__
+[6878.72] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[6878.73] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[6878.73] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[6878.73] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[6878.73] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[6884.63] Creating engine for __default__
+[6884.64] Starting new broadcast loop task for __default__ (previous task: None)
+[6884.64] Broadcast loop running for __default__
+[6885.34] Added connection for __default__. Total: 1
+[6885.34] Broadcast loop task for __default__ already running
+[6885.36] Added connection for __default__. Total: 2
+[6885.36] Broadcast loop task for __default__ already running
+[6885.37] Added connection for __default__. Total: 3
+[6885.38] Broadcast loop task for __default__ already running
+[6885.39] Creating engine for aeed720911ec
+[6885.40] Added connection for aeed720911ec. Total: 1
+[6885.40] Starting new broadcast loop task for aeed720911ec (previous task: None)
+[6885.40] Broadcast loop running for aeed720911ec
+[6885.40] CRITICAL: Broadcast loop crashed for aeed720911ec: IndexError: single positional indexer is out-of-bounds
+[6885.41] Added connection for __default__. Total: 4
+[6885.41] Broadcast loop task for __default__ already running
+[6885.44] Added connection for __default__. Total: 5
+[6885.44] Broadcast loop task for __default__ already running
+[6885.47] Creating engine for 8f65f9c27b21
+[6885.47] Added connection for 8f65f9c27b21. Total: 1
+[6885.47] Starting new broadcast loop task for 8f65f9c27b21 (previous task: None)
+[6885.47] Broadcast loop running for 8f65f9c27b21
+[6885.48] CRITICAL: Broadcast loop crashed for 8f65f9c27b21: IndexError: single positional indexer is out-of-bounds
+[6885.94] Broadcasting packet to 5 clients on __default__
+[6885.94] Successfully sent json to ws on __default__
+[6885.94] Successfully sent json to ws on __default__
+[6885.94] Successfully sent json to ws on __default__
+[6885.95] Successfully sent json to ws on __default__
+[6885.95] Successfully sent json to ws on __default__
+[6886.58] Broadcasting packet to 5 clients on __default__
+[6886.58] Successfully sent json to ws on __default__
+[6886.58] Successfully sent json to ws on __default__
+[6886.58] Successfully sent json to ws on __default__
+[6886.58] Successfully sent json to ws on __default__
+[6886.58] Successfully sent json to ws on __default__
+[6887.21] Broadcasting packet to 5 clients on __default__
+[6887.21] Successfully sent json to ws on __default__
+[6887.21] Successfully sent json to ws on __default__
+[6887.22] Successfully sent json to ws on __default__
+[6887.22] Successfully sent json to ws on __default__
+[6887.22] Successfully sent json to ws on __default__
+[6887.85] Broadcasting packet to 5 clients on __default__
+[6887.86] Successfully sent json to ws on __default__
+[6887.86] Successfully sent json to ws on __default__
+[6887.86] Successfully sent json to ws on __default__
+[6887.86] Successfully sent json to ws on __default__
+[6887.86] Successfully sent json to ws on __default__
+[6888.49] Broadcasting packet to 5 clients on __default__
+[6888.49] Successfully sent json to ws on __default__
+[6888.49] Successfully sent json to ws on __default__
+[6888.49] Successfully sent json to ws on __default__
+[6888.49] Successfully sent json to ws on __default__
+[6888.49] Successfully sent json to ws on __default__
+[6889.13] Broadcasting packet to 5 clients on __default__
+[6889.13] Successfully sent json to ws on __default__
+[6889.13] Successfully sent json to ws on __default__
+[6889.13] Successfully sent json to ws on __default__
+[6889.13] Successfully sent json to ws on __default__
+[6889.13] Successfully sent json to ws on __default__
+[6889.77] Broadcasting packet to 5 clients on __default__
+[6889.77] Successfully sent json to ws on __default__
+[6889.77] Successfully sent json to ws on __default__
+[6889.77] Successfully sent json to ws on __default__
+[6889.78] Successfully sent json to ws on __default__
+[6889.78] Successfully sent json to ws on __default__
+[6890.41] Broadcasting packet to 5 clients on __default__
+[6890.41] Successfully sent json to ws on __default__
+[6890.41] Successfully sent json to ws on __default__
+[6890.41] Successfully sent json to ws on __default__
+[6890.41] Successfully sent json to ws on __default__
+[6890.41] Successfully sent json to ws on __default__
+[6891.04] Broadcasting packet to 5 clients on __default__
+[6891.05] Successfully sent json to ws on __default__
+[6891.05] Successfully sent json to ws on __default__
+[6891.05] Successfully sent json to ws on __default__
+[6891.05] Successfully sent json to ws on __default__
+[6891.05] Successfully sent json to ws on __default__
+[6891.69] Broadcasting packet to 5 clients on __default__
+[6891.69] Successfully sent json to ws on __default__
+[6891.69] Successfully sent json to ws on __default__
+[6891.69] Successfully sent json to ws on __default__
+[6891.69] Successfully sent json to ws on __default__
+[6891.69] Successfully sent json to ws on __default__
+[6892.32] Broadcasting packet to 5 clients on __default__
+[6892.32] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[6892.32] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[6892.32] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[6892.33] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[6892.33] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[7001.87] Creating engine for __default__
+[7001.87] Starting new broadcast loop task for __default__ (previous task: None)
+[7001.87] Broadcast loop running for __default__
+[7003.34] Added connection for __default__. Total: 1
+[7003.34] Broadcast loop task for __default__ already running
+[7003.36] Added connection for __default__. Total: 2
+[7003.36] Broadcast loop task for __default__ already running
+[7003.37] Added connection for __default__. Total: 3
+[7003.37] Broadcast loop task for __default__ already running
+[7003.39] Added connection for __default__. Total: 4
+[7003.39] Broadcast loop task for __default__ already running
+[7003.40] Creating engine for 8f65f9c27b21
+[7003.41] Added connection for 8f65f9c27b21. Total: 1
+[7003.41] Starting new broadcast loop task for 8f65f9c27b21 (previous task: None)
+[7003.41] Broadcast loop running for 8f65f9c27b21
+[7003.42] Broadcasting packet to 1 clients on 8f65f9c27b21
+[7003.42] Successfully sent json to ws on 8f65f9c27b21
+[7003.43] Creating engine for aeed720911ec
+[7003.44] Added connection for aeed720911ec. Total: 1
+[7003.44] Starting new broadcast loop task for aeed720911ec (previous task: None)
+[7003.44] Broadcast loop running for aeed720911ec
+[7003.45] Broadcasting packet to 1 clients on aeed720911ec
+[7003.45] Successfully sent json to ws on aeed720911ec
+[7003.47] Added connection for __default__. Total: 5
+[7003.47] Broadcast loop task for __default__ already running
+[7003.78] Broadcasting packet to 5 clients on __default__
+[7003.79] Successfully sent json to ws on __default__
+[7003.79] Successfully sent json to ws on __default__
+[7003.79] Successfully sent json to ws on __default__
+[7003.79] Successfully sent json to ws on __default__
+[7003.79] Successfully sent json to ws on __default__
+[7004.42] Broadcasting packet to 5 clients on __default__
+[7004.42] Successfully sent json to ws on __default__
+[7004.42] Successfully sent json to ws on __default__
+[7004.43] Successfully sent json to ws on __default__
+[7004.43] Successfully sent json to ws on __default__
+[7004.43] Successfully sent json to ws on __default__
+[7005.06] Broadcasting packet to 5 clients on __default__
+[7005.06] Successfully sent json to ws on __default__
+[7005.07] Successfully sent json to ws on __default__
+[7005.07] Successfully sent json to ws on __default__
+[7005.07] Successfully sent json to ws on __default__
+[7005.07] Successfully sent json to ws on __default__
+[7005.43] Broadcasting packet to 1 clients on 8f65f9c27b21
+[7005.43] Successfully sent json to ws on 8f65f9c27b21
+[7005.46] Broadcasting packet to 1 clients on aeed720911ec
+[7005.46] Successfully sent json to ws on aeed720911ec
+[7005.70] Broadcasting packet to 5 clients on __default__
+[7005.71] Successfully sent json to ws on __default__
+[7005.71] Successfully sent json to ws on __default__
+[7005.71] Successfully sent json to ws on __default__
+[7005.71] Successfully sent json to ws on __default__
+[7005.71] Successfully sent json to ws on __default__
+[7006.34] Broadcasting packet to 5 clients on __default__
+[7006.35] Successfully sent json to ws on __default__
+[7006.35] Successfully sent json to ws on __default__
+[7006.35] Successfully sent json to ws on __default__
+[7006.35] Successfully sent json to ws on __default__
+[7006.35] Successfully sent json to ws on __default__
+[7006.99] Broadcasting packet to 5 clients on __default__
+[7006.99] Successfully sent json to ws on __default__
+[7006.99] Successfully sent json to ws on __default__
+[7006.99] Successfully sent json to ws on __default__
+[7006.99] Successfully sent json to ws on __default__
+[7007.00] Successfully sent json to ws on __default__
+[7007.43] Broadcasting packet to 1 clients on 8f65f9c27b21
+[7007.44] Successfully sent json to ws on 8f65f9c27b21
+[7007.46] Broadcasting packet to 1 clients on aeed720911ec
+[7007.47] Successfully sent json to ws on aeed720911ec
+[7007.63] Broadcasting packet to 5 clients on __default__
+[7007.63] Successfully sent json to ws on __default__
+[7007.63] Successfully sent json to ws on __default__
+[7007.63] Successfully sent json to ws on __default__
+[7007.63] Successfully sent json to ws on __default__
+[7007.64] Successfully sent json to ws on __default__
+[7008.26] Broadcasting packet to 5 clients on __default__
+[7008.27] Successfully sent json to ws on __default__
+[7008.27] Successfully sent json to ws on __default__
+[7008.27] Successfully sent json to ws on __default__
+[7008.27] Successfully sent json to ws on __default__
+[7008.27] Successfully sent json to ws on __default__
+[7008.90] Broadcasting packet to 5 clients on __default__
+[7008.90] Successfully sent json to ws on __default__
+[7008.91] Successfully sent json to ws on __default__
+[7008.91] Successfully sent json to ws on __default__
+[7008.91] Successfully sent json to ws on __default__
+[7008.91] Successfully sent json to ws on __default__
+[7009.44] Broadcasting packet to 1 clients on 8f65f9c27b21
+[7009.44] Successfully sent json to ws on 8f65f9c27b21
+[7009.47] Broadcasting packet to 1 clients on aeed720911ec
+[7009.48] Successfully sent json to ws on aeed720911ec
+[7009.54] Broadcasting packet to 5 clients on __default__
+[7009.55] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[7009.55] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[7009.55] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[7009.55] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[7009.55] Error sending json to ws on __default__: TypeError: Object of type bool is not JSON serializable
+[7011.46] Broadcasting packet to 1 clients on 8f65f9c27b21
+[7011.46] Successfully sent json to ws on 8f65f9c27b21
+[7011.49] Broadcasting packet to 1 clients on aeed720911ec
+[7011.49] Successfully sent json to ws on aeed720911ec
+[7014.50] Creating engine for __default__
+[7014.51] Starting new broadcast loop task for __default__ (previous task: None)
+[7014.51] Broadcast loop running for __default__
+[7015.32] Creating engine for 8f65f9c27b21
+[7015.33] Added connection for 8f65f9c27b21. Total: 1
+[7015.33] Starting new broadcast loop task for 8f65f9c27b21 (previous task: None)
+[7015.33] Broadcast loop running for 8f65f9c27b21
+[7015.33] Broadcasting packet to 1 clients on 8f65f9c27b21
+[7015.34] Successfully sent json to ws on 8f65f9c27b21
+[7015.35] Added connection for __default__. Total: 1
+[7015.35] Broadcast loop task for __default__ already running
+[7015.36] Added connection for __default__. Total: 2
+[7015.36] Broadcast loop task for __default__ already running
+[7015.38] Added connection for __default__. Total: 3
+[7015.38] Broadcast loop task for __default__ already running
+[7015.39] Creating engine for aeed720911ec
+[7015.40] Added connection for aeed720911ec. Total: 1
+[7015.40] Starting new broadcast loop task for aeed720911ec (previous task: None)
+[7015.40] Broadcast loop running for aeed720911ec
+[7015.40] Broadcasting packet to 1 clients on aeed720911ec
+[7015.40] Successfully sent json to ws on aeed720911ec
+[7015.42] Added connection for __default__. Total: 4
+[7015.42] Broadcast loop task for __default__ already running
+[7015.44] Added connection for __default__. Total: 5
+[7015.44] Broadcast loop task for __default__ already running
+[7015.80] Broadcasting packet to 5 clients on __default__
+[7015.80] Successfully sent json to ws on __default__
+[7015.80] Successfully sent json to ws on __default__
+[7015.81] Successfully sent json to ws on __default__
+[7015.81] Successfully sent json to ws on __default__
+[7015.81] Successfully sent json to ws on __default__
+[7016.44] Broadcasting packet to 5 clients on __default__
+[7016.44] Successfully sent json to ws on __default__
+[7016.45] Successfully sent json to ws on __default__
+[7016.45] Successfully sent json to ws on __default__
+[7016.45] Successfully sent json to ws on __default__
+[7016.45] Successfully sent json to ws on __default__
+[7017.08] Broadcasting packet to 5 clients on __default__
+[7017.08] Successfully sent json to ws on __default__
+[7017.09] Successfully sent json to ws on __default__
+[7017.09] Successfully sent json to ws on __default__
+[7017.09] Successfully sent json to ws on __default__
+[7017.09] Successfully sent json to ws on __default__
+[7017.35] Broadcasting packet to 1 clients on 8f65f9c27b21
+[7017.35] Successfully sent json to ws on 8f65f9c27b21
+[7017.41] Broadcasting packet to 1 clients on aeed720911ec
+[7017.41] Successfully sent json to ws on aeed720911ec
+[7017.72] Broadcasting packet to 5 clients on __default__
+[7017.72] Successfully sent json to ws on __default__
+[7017.72] Successfully sent json to ws on __default__
+[7017.72] Successfully sent json to ws on __default__
+[7017.72] Successfully sent json to ws on __default__
+[7017.72] Successfully sent json to ws on __default__
+[7018.36] Broadcasting packet to 5 clients on __default__
+[7018.36] Successfully sent json to ws on __default__
+[7018.36] Successfully sent json to ws on __default__
+[7018.36] Successfully sent json to ws on __default__
+[7018.36] Successfully sent json to ws on __default__
+[7018.36] Successfully sent json to ws on __default__
+[7018.99] Broadcasting packet to 5 clients on __default__
+[7018.99] Successfully sent json to ws on __default__
+[7019.00] Successfully sent json to ws on __default__
+[7019.00] Successfully sent json to ws on __default__
+[7019.00] Successfully sent json to ws on __default__
+[7019.00] Successfully sent json to ws on __default__
+[7019.36] Broadcasting packet to 1 clients on 8f65f9c27b21
+[7019.36] Successfully sent json to ws on 8f65f9c27b21
+[7019.42] Broadcasting packet to 1 clients on aeed720911ec
+[7019.42] Successfully sent json to ws on aeed720911ec
+[7019.63] Broadcasting packet to 5 clients on __default__
+[7019.63] Successfully sent json to ws on __default__
+[7019.63] Successfully sent json to ws on __default__
+[7019.64] Successfully sent json to ws on __default__
+[7019.64] Successfully sent json to ws on __default__
+[7019.64] Successfully sent json to ws on __default__
+[7020.27] Broadcasting packet to 5 clients on __default__
+[7020.27] Successfully sent json to ws on __default__
+[7020.27] Successfully sent json to ws on __default__
+[7020.27] Successfully sent json to ws on __default__
+[7020.27] Successfully sent json to ws on __default__
+[7020.27] Successfully sent json to ws on __default__
+
+--- UPLOAD ATTEMPT: 2019.csv (490832632 bytes) ---
+station_code,weather_date,element_type,element_value,measurement_flag,measurement_flag
+USC00419361,20190101,TMAX,156,,,7,0800
+USC00419361,20190101,TMIN,39,,,7,0800
+USC00419361,20190101,TOBS,39,,,7,0800
+USC00419361,20190101,PRCP,0,,,7,0800
+USC00419361,20190101,SNOW,0,,,7,
+USC00419361,20190101,SNWD,0,,,7,
+USC00419361,20190101,SN52,178,,,7,0800
+USC00419361,20190101,SX52,178,,,7,0800
+USC00421168,20190101,TMAX,-28,,,7,0800
+USC00421168,20190101,TMIN,-100,,,7,0800
+USC00421168,20190101,TOBS,-94,,,7,0800
+ERROR: Could not parse valid weather rows from dataset.
+Traceback (most recent call last):
+  File "C:\Users\ARKA PATRA\OneDrive\Documents\Desktop\orbion\backend\app\api\upload.py", line 231, in upload_weather_file
+    normalized_df = normalize_ghcn_format(raw_df)
+  File "C:\Users\ARKA PATRA\OneDrive\Documents\Desktop\orbion\backend\app\api\upload.py", line 129, in normalize_ghcn_format
+    raise ValueError("Could not parse valid weather rows from dataset.")
+ValueError: Could not parse valid weather rows from dataset.
+
