@@ -210,27 +210,41 @@ async def upload_weather_file(file: UploadFile = File(...)):
 
     # Parse and normalize
     try:
-        # Detect delimiter: comma, tab, semicolon, or whitespace
-        detected_sep = ","
-        first_line = sample_preview.splitlines()[0] if sample_preview else ""
-        if "\t" in first_line:
-            detected_sep = "\t"
-        elif ";" in first_line and "," not in first_line:
-            detected_sep = ";"
+        # Read the first few lines of the file to inspect header and data structure
+        with open(temp_raw_path, "r", encoding="utf-8", errors="replace") as f:
+            first_line = f.readline().strip()
+            second_line = f.readline().strip()
 
-        # Read header and first chunk to inspect format
-        sample_df = pd.read_csv(temp_raw_path, sep=detected_sep, nrows=50)
-        sample_cols = [str(c).lower().strip() for c in sample_df.columns]
-        print(f"[Upload Diagnostic] Detected sep: '{detected_sep}', Cols: {sample_cols}")
+        # Detect delimiter
+        detected_sep = "\t" if "\t" in first_line else (";" if (";" in first_line and "," not in first_line) else ",")
 
         # Check if NOAA GHCN format (station_code, element_type, element_v)
-        is_ghcn = any("element" in c for c in sample_cols) or any("station" in c for c in sample_cols) or ("tmax" in [str(x).lower() for x in sample_df.iloc[:, 2:4].values.flatten() if pd.notna(x)])
+        is_ghcn = (
+            any(k in first_line.lower() for k in ["element", "station_code", "weather_d", "station"])
+            or any(k in second_line.upper() for k in ["TMAX", "TMIN", "TOBS", "PRCP"])
+        )
 
         if is_ghcn:
-            raw_df = pd.read_csv(temp_raw_path, sep=detected_sep, nrows=MAX_REPLAY_ROWS * 4)
+            ghcn_names = ["station_code", "weather_date", "element_type", "element_value", "mflag", "qflag", "sflag", "obstime"]
+            is_first_line_header = any(k in first_line.lower() for k in ["station", "weather", "element", "code", "date"])
+            skip = 1 if is_first_line_header else 0
+
+            # Determine column count from the data row
+            data_cols_count = max(4, second_line.count(detected_sep) + 1)
+            use_names = (ghcn_names + [f"extra_{i}" for i in range(8, data_cols_count + 1)])[:data_cols_count]
+
+            print(f"[Upload] Reading GHCN with {len(use_names)} column names, skiprows={skip}")
+            raw_df = pd.read_csv(
+                temp_raw_path,
+                sep=detected_sep,
+                names=use_names,
+                skiprows=skip,
+                nrows=MAX_REPLAY_ROWS * 5,
+                on_bad_lines="skip"
+            )
             normalized_df = normalize_ghcn_format(raw_df)
         else:
-            raw_df = pd.read_csv(temp_raw_path, sep=detected_sep, nrows=MAX_REPLAY_ROWS)
+            raw_df = pd.read_csv(temp_raw_path, sep=detected_sep, nrows=MAX_REPLAY_ROWS, on_bad_lines="skip")
             normalized_df = normalize_standard_format(raw_df)
 
         # Truncate to MAX_REPLAY_ROWS for optimal real-time streaming
