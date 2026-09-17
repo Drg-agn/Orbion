@@ -2,10 +2,11 @@ import React from 'react';
 import { Navigation } from 'lucide-react';
 
 export default function StationMap({ stations = [], selectedStationId, onSelectStation, latestPacket }) {
-  const hasCoordinates = stations.length > 0 && stations.some(s => s.latitude != null && s.longitude != null);
+  const mapStations = stations.slice(0, 16);
+  const hasCoordinates = mapStations.length > 0 && mapStations.some(s => s.latitude != null && s.longitude != null);
 
-  const lats = stations.map(s => s.latitude || 28.6);
-  const lons = stations.map(s => s.longitude || 77.2);
+  const lats = mapStations.map(s => s.latitude || 28.6);
+  const lons = mapStations.map(s => s.longitude || 77.2);
   const minLat = Math.min(...lats, 28.55);
   const maxLat = Math.max(...lats, 28.70);
   const minLon = Math.min(...lons, 77.15);
@@ -54,10 +55,10 @@ export default function StationMap({ stations = [], selectedStationId, onSelectS
 
         <svg className="w-full h-full max-w-[420px] max-h-[260px]" viewBox="0 0 340 240">
           {/* Inter-station links */}
-          {stations.map((st1, i) => {
-            const p1 = getCoordinates(st1, i, stations.length);
-            return stations.slice(i + 1).map((st2, j) => {
-              const p2 = getCoordinates(st2, i + 1 + j, stations.length);
+          {mapStations.map((st1, i) => {
+            const p1 = getCoordinates(st1, i, mapStations.length);
+            return mapStations.slice(i + 1).map((st2, j) => {
+              const p2 = getCoordinates(st2, i + 1 + j, mapStations.length);
               return (
                 <line
                   key={`${st1.id}-${st2.id}`}
@@ -74,9 +75,9 @@ export default function StationMap({ stations = [], selectedStationId, onSelectS
           })}
 
           {/* Station Nodes */}
-          {stations.map((st, idx) => {
+          {mapStations.map((st, idx) => {
             const sid = st.id || `S${idx}`;
-            const pos = getCoordinates(st, idx, stations.length);
+            const pos = getCoordinates(st, idx, mapStations.length);
             const isSelected = sid === selectedStationId;
             const isTicking = latestPacket?.station_id === sid;
             const health = isTicking ? latestPacket.health_score : (st.health_score ?? 100);

@@ -1,16 +1,24 @@
 import React from 'react';
 import { Activity, ShieldCheck, AlertTriangle, CloudLightning } from 'lucide-react';
 
-export default function KpiCards({ metrics, liveAlerts = [] }) {
+export default function KpiCards({ metrics, liveAlerts = [], totalStationsCount, activeStreamCount }) {
   // Count current session classifications
   const faultCount = liveAlerts.filter(a => a.classification === 'sensor_fault').length;
   const eventCount = liveAlerts.filter(a => a.classification === 'weather_event').length;
 
+  const stationValue = totalStationsCount
+    ? totalStationsCount.toLocaleString()
+    : (metrics ? `${metrics.healthy_stations}/${metrics.total_stations}` : '6/6');
+
+  const stationSub = totalStationsCount
+    ? `${activeStreamCount || 24} active stream channels`
+    : 'All telemetry channels active';
+
   const cards = [
     {
-      title: 'Online Stations',
-      value: metrics ? `${metrics.healthy_stations}/${metrics.total_stations}` : '6/6',
-      sub: 'All telemetry channels active',
+      title: totalStationsCount ? 'Stations Detected' : 'Online Stations',
+      value: stationValue,
+      sub: stationSub,
       icon: Activity,
       color: 'text-cyan-400',
       border: 'border-cyan-500/20',

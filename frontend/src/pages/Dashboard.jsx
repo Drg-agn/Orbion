@@ -242,10 +242,17 @@ export default function Dashboard() {
         <FileUpload
           onSessionReady={handleSessionReady}
           onUseDemoData={handleUseDemoData}
+          onSelectStation={setSelectedStationId}
+          selectedStationId={selectedStationId}
         />
 
         {/* KPI Cards */}
-        <KpiCards metrics={metrics} liveAlerts={displayAlerts} />
+        <KpiCards
+          metrics={metrics}
+          liveAlerts={displayAlerts}
+          totalStationsCount={sessionMeta?.total_stations_count}
+          activeStreamCount={sessionMeta?.stations?.length}
+        />
 
         {/* Center Grid: Live Chart & Alert Feed */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
@@ -265,6 +272,8 @@ export default function Dashboard() {
           <div className="lg:col-span-5">
             <StationHealth
               stations={activeStations}
+              allStations={sessionMeta?.all_stations}
+              totalStationsCount={sessionMeta?.total_stations_count}
               selectedStationId={selectedStationId}
               onSelectStation={setSelectedStationId}
               latestPacket={latestPacket}

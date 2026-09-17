@@ -2,7 +2,7 @@ import React, { useState, useCallback, useRef } from 'react';
 import { UploadCloud, FileCheck2, XCircle, Loader2, RefreshCcw, Sparkles } from 'lucide-react';
 import { uploadWeatherFile } from '../api/client';
 
-export default function FileUpload({ onSessionReady, onUseDemoData }) {
+export default function FileUpload({ onSessionReady, onUseDemoData, onSelectStation, selectedStationId }) {
   const [isDragging, setIsDragging] = useState(false);
   const [status, setStatus] = useState('idle'); // idle | uploading | success | error
   const [errorMsg, setErrorMsg] = useState('');
@@ -123,14 +123,23 @@ export default function FileUpload({ onSessionReady, onUseDemoData }) {
               {meta.filename} — Successfully analyzed and streaming live!
             </p>
             <p className="text-slate-300">
-              Loaded <span className="font-mono font-semibold text-emerald-200">{meta.rows}</span> readings across{' '}
-              <span className="font-mono font-semibold text-emerald-200">{meta.stations.length}</span> station(s):
+              Detected <span className="font-mono font-semibold text-emerald-200">{(meta.total_stations_count || meta.stations.length).toLocaleString()}</span> total stations in dataset.
+              Streaming live primary channels ({meta.stations.length} stations, click to inspect):
             </p>
             <div className="flex flex-wrap gap-1.5 pt-1">
               {meta.stations.map((stId) => (
-                <span key={stId} className="px-2 py-0.5 rounded bg-slate-800 text-slate-200 border border-slate-700 font-mono text-[10px]">
+                <button
+                  key={stId}
+                  onClick={() => onSelectStation?.(stId)}
+                  className={`px-2 py-0.5 rounded font-mono text-[11px] transition-all cursor-pointer ${
+                    selectedStationId === stId
+                      ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/30'
+                      : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700'
+                  }`}
+                  title={`View Live Chart for ${stId}`}
+                >
                   {stId}
-                </span>
+                </button>
               ))}
             </div>
           </div>
