@@ -1,0 +1,29 @@
+{
+  "feature_version": 2,
+  "features": [
+    "d_temp",
+    "d_pres",
+    "d_hum",
+    "d_dew",
+    "dev_temp",
+    "dev_pres",
+    "dev_hum",
+    "std_temp",
+    "std_pres",
+    "std_hum",
+    "dew_depression",
+    "z_temp",
+    "z_pres",
+    "z_hum",
+    "prev_d_temp",
+    "prev_d_pres",
+    "prev_d_hum",
+    "std3h_temp",
+    "std3h_pres",
+    "std3h_hum"
+  ],
+  "center": 0.38920538023755036,
+  "threshold": 0.6132635924271063,
+  "target_fpr": 0.002,
+  "n_train": 200000
+}

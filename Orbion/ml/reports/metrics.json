@@ -1,0 +1,88 @@
+{
+  "baseline_zscore": {
+    "roc_auc": 0.4952,
+    "precision": 0.2563,
+    "recall": 0.0443,
+    "f1": 0.0755,
+    "false_alarm_rate": 0.0434,
+    "episode_detection": {
+      "bias": 0.914,
+      "drift": 1.0,
+      "noise": 0.814,
+      "spike": 0.892,
+      "stuck": 0.382
+    },
+    "median_delay_min": 20.0,
+    "natural_events": 25,
+    "natural_events_flagged": 0.44
+  },
+  "isolation_forest": {
+    "roc_auc": 0.5348,
+    "precision": 0.1654,
+    "recall": 0.0017,
+    "f1": 0.0034,
+    "false_alarm_rate": 0.00296,
+    "episode_detection": {
+      "bias": 0.057,
+      "drift": 0.196,
+      "noise": 0.07,
+      "spike": 0.0,
+      "stuck": 0.029
+    },
+    "median_delay_min": 540.0,
+    "natural_events": 25,
+    "natural_events_flagged": 0.52
+  },
+  "lstm_autoencoder": {
+    "roc_auc": 0.555,
+    "precision": 0.7269,
+    "recall": 0.0286,
+    "f1": 0.0551,
+    "false_alarm_rate": 0.00363,
+    "episode_detection": {
+      "bias": 0.229,
+      "drift": 0.043,
+      "noise": 0.488,
+      "spike": 0.324,
+      "stuck": 0.029
+    },
+    "median_delay_min": 135.0,
+    "natural_events": 25,
+    "natural_events_flagged": 0.16
+  },
+  "fault_classifier": {
+    "roc_auc": 0.6278,
+    "precision": 0.9498,
+    "recall": 0.1003,
+    "f1": 0.1814,
+    "false_alarm_rate": 0.00179,
+    "episode_detection": {
+      "bias": 0.4,
+      "drift": 0.478,
+      "noise": 1.0,
+      "spike": 0.811,
+      "stuck": 1.0
+    },
+    "median_delay_min": 20.0,
+    "natural_events": 25,
+    "natural_events_flagged": 0.0
+  },
+  "combined": {
+    "roc_auc": 0.6256,
+    "precision": 0.8333,
+    "recall": 0.1108,
+    "f1": 0.1955,
+    "false_alarm_rate": 0.00749,
+    "episode_detection": {
+      "bias": 0.543,
+      "drift": 0.609,
+      "noise": 1.0,
+      "spike": 0.811,
+      "stuck": 1.0
+    },
+    "median_delay_min": 20.0,
+    "natural_events": 25,
+    "natural_events_flagged": 0.52
+  },
+  "fault_type_accuracy": 0.9653
+}

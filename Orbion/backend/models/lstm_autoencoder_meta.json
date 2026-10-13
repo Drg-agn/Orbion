@@ -1,0 +1,19 @@
+{
+  "feature_version": 2,
+  "channels": [
+    "temp",
+    "pressure",
+    "humidity",
+    "dew_point"
+  ],
+  "window": 36,
+  "channel_scale": [
+    1.4201862812042236,
+    0.7246818542480469,
+    5.845841884613037,
+    0.6819809675216675
+  ],
+  "center": 0.03501017391681671,
+  "threshold": 0.7438608407974243,
+  "target_fpr": 0.002
+}
