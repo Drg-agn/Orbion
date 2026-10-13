@@ -84,5 +84,68 @@
     "natural_events": 25,
     "natural_events_flagged": 0.52
   },
-  "fault_type_accuracy": 0.9653
+  "combined_ae_clf": {
+    "roc_auc": 0.6359,
+    "precision": 0.8735,
+    "recall": 0.1095,
+    "f1": 0.1945,
+    "false_alarm_rate": 0.00536,
+    "episode_detection": {
+      "bias": 0.543,
+      "drift": 0.478,
+      "noise": 1.0,
+      "spike": 0.811,
+      "stuck": 1.0
+    },
+    "median_delay_min": 20.0,
+    "natural_events": 25,
+    "natural_events_flagged": 0.16
+  },
+  "fault_type_accuracy": 0.9653,
+  "classifier_recall_by_fault": {
+    "bias": 0.029,
+    "drift": 0.003,
+    "noise": 0.691,
+    "spike": 0.811,
+    "stuck": 0.721
+  },
+  "classifier_threshold_sweep": [
+    {
+      "threshold": 0.15,
+      "precision": 0.56,
+      "recall": 0.254,
+      "false_alarm_rate": 0.0673
+    },
+    {
+      "threshold": 0.2,
+      "precision": 0.622,
+      "recall": 0.211,
+      "false_alarm_rate": 0.0434
+    },
+    {
+      "threshold": 0.3,
+      "precision": 0.721,
+      "recall": 0.158,
+      "false_alarm_rate": 0.0207
+    },
+    {
+      "threshold": 0.4,
+      "precision": 0.822,
+      "recall": 0.134,
+      "false_alarm_rate": 0.0098
+    },
+    {
+      "threshold": 0.5,
+      "precision": 0.95,
+      "recall": 0.1,
+      "false_alarm_rate": 0.0018
+    }
+  ],
+  "lstm_recall_by_fault": {
+    "bias": 0.025,
+    "drift": 0.001,
+    "noise": 0.29,
+    "spike": 0.324,
+    "stuck": 0.008
+  }
 }

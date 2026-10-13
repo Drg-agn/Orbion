@@ -14,6 +14,12 @@ Metrics
   natural events     clean readings where >=2 variables jump together (fronts, storms).
                      ML WILL flag many of these - that is expected; the classification
                      layer is what must rescue them. Report this number honestly.
+
+Extra diagnostics added in this version
+  combined_ae_clf    max of LSTM autoencoder + classifier only (leaves out Isolation
+                     Forest, which drags the plain "combined" score down)
+  recall_by_fault    per-reading recall of the classifier for each fault type
+  threshold_sweep    classifier precision / recall / false-alarm rate at several thresholds
 """
 import json
 import numpy as np
@@ -64,7 +70,8 @@ def score_all(df):
             proba = clf.predict_proba(f.loc[keep].to_numpy())
             none_idx = list(clf.classes_).index("none")
             r["clf"] = unit(1 - proba[:, none_idx], clf_meta)
-            masked = proba.copy(); masked[:, none_idx] = -1
+            masked = proba.copy()
+            masked[:, none_idx] = -1
             r["clf_type"] = clf.classes_[masked.argmax(axis=1)]
         if ae is not None:
             rows = np.flatnonzero(keep)
@@ -74,9 +81,17 @@ def score_all(df):
             r["ae"] = unit(err, ae_meta)
         parts.append(r)
     out = pd.concat(parts, ignore_index=True)
+
+    # all available models combined
     models = [m for m in ("if", "ae", "clf") if m in out]
     if models:
         out["combined"] = out[models].max(axis=1)
+
+    # LSTM autoencoder + classifier only (Isolation Forest left out)
+    alt = [m for m in ("ae", "clf") if m in out]
+    if alt:
+        out["combined_ae_clf"] = out[alt].max(axis=1)
+
     return out
 
 
@@ -109,12 +124,37 @@ def summarize(r, col, alarm):
     return res
 
 
+def recall_by_fault(r, col, threshold=0.5):
+    """Per-reading recall of one score column, split by fault type."""
+    faulty = r[r["fault"] != "none"]
+    return {
+        kind: round(float((g[col] >= threshold).mean()), 3)
+        for kind, g in faulty.groupby("fault")
+    }
+
+
+def threshold_sweep(r, col, thresholds=(0.15, 0.2, 0.3, 0.4, 0.5)):
+    """Precision / recall / false-alarm rate of one score column at several thresholds."""
+    y = (r["fault"] != "none").to_numpy()
+    out = []
+    for t in thresholds:
+        a = (r[col] >= t).to_numpy()
+        out.append({
+            "threshold": t,
+            "precision": round(float(precision_score(y, a, zero_division=0)), 3),
+            "recall": round(float(recall_score(y, a)), 3),
+            "false_alarm_rate": round(float(a[~y].mean()), 4),
+        })
+    return out
+
+
 def main():
     r = score_all(load_split("test"))
     r = r[~r["recovering"]].reset_index(drop=True)
     report = {"baseline_zscore": summarize(r, "baseline", r["baseline_alarm"].to_numpy())}
     for col, name in (("if", "isolation_forest"), ("ae", "lstm_autoencoder"),
-                      ("clf", "fault_classifier"), ("combined", "combined")):
+                      ("clf", "fault_classifier"), ("combined", "combined"),
+                      ("combined_ae_clf", "combined_ae_clf")):
         if col in r:
             report[name] = summarize(r, col, (r[col] >= 0.5).to_numpy())
 
@@ -132,7 +172,27 @@ def main():
                      **{f"det_{k}": v for k, v in m["episode_detection"].items()}})
     table = pd.DataFrame(rows).set_index("model").T
     print(table.to_string())
-    (REPORTS / "metrics.json").write_text(json.dumps(report, indent=2))
+
+    # ---- extra diagnostics (kept separate so they don't mix into the model table) ----
+    extra = {}
+    if "clf" in r:
+        extra["classifier_recall_by_fault"] = recall_by_fault(r, "clf", 0.5)
+        extra["classifier_threshold_sweep"] = threshold_sweep(r, "clf")
+
+        print("\nPer-reading recall by fault type (classifier, threshold 0.5):")
+        for kind, val in extra["classifier_recall_by_fault"].items():
+            print(f"  {kind:<8} {val}")
+
+        print("\nThreshold sweep (classifier):")
+        print(pd.DataFrame(extra["classifier_threshold_sweep"]).to_string(index=False))
+
+    if "ae" in r:
+        extra["lstm_recall_by_fault"] = recall_by_fault(r, "ae", 0.5)
+        print("\nPer-reading recall by fault type (LSTM autoencoder, threshold 0.5):")
+        for kind, val in extra["lstm_recall_by_fault"].items():
+            print(f"  {kind:<8} {val}")
+
+    (REPORTS / "metrics.json").write_text(json.dumps({**report, **extra}, indent=2))
     table.to_csv(REPORTS / "metrics_table.csv")
     print(f"\nSaved -> {REPORTS / 'metrics.json'}")
 
