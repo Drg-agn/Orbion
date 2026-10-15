@@ -27,7 +27,7 @@ import pandas as pd
 from sklearn.metrics import roc_auc_score, precision_score, recall_score, f1_score
 
 from common import MODELS, REPORTS, load_split, per_station
-from app.ml.features import WINDOW, frame_features, frame_sequences
+from app.ml.features import WINDOW, LONG, frame_features, frame_sequences
 
 
 def unit(raw, meta):
@@ -57,7 +57,7 @@ def score_all(df):
             continue
         f = frame_features(g)
         keep = f.notna().all(axis=1).to_numpy()
-        r = g.loc[keep, ["timestamp", "fault", "fault_var", "episode_id"]].copy()
+        r = g.loc[keep, ["timestamp", "fault", "fault_var", "episode_id", "fault_size", "ep_pos"]].copy()
         recent = (g["fault"] != "none").astype(int).rolling(WINDOW, min_periods=1).max().astype(bool)
         r["recovering"] = (recent & (g["fault"] == "none"))[keep].to_numpy()
         r["d_temp"], r["d_pres"], r["d_hum"] = f.loc[keep, "d_temp"], f.loc[keep, "d_pres"], f.loc[keep, "d_hum"]
@@ -151,6 +151,17 @@ def threshold_sweep(r, col, thresholds=(0.15, 0.2, 0.3, 0.4, 0.5)):
 def main():
     r = score_all(load_split("test"))
     r = r[~r["recovering"]].reset_index(drop=True)
+
+    # ---- diagnostic: where inside a bias/drift episode does the classifier fire? ----
+    if "clf" in r:
+        f_ = r[r["fault"].isin(["bias", "drift"])].copy()
+        f_["hit"] = f_["clf"] >= 0.5
+        f_["pos_bin"] = pd.cut(f_["ep_pos"], [-1, 0, 5, 35, 143, 10000],
+                               labels=["1st", "2-6", "7-36", "37-144", ">144"])
+        print("\nBias/drift classifier recall by position in episode:")
+        print(f_.groupby(["fault", "pos_bin"], observed=True)["hit"].mean().round(3).unstack().to_string())
+        print()
+
     report = {"baseline_zscore": summarize(r, "baseline", r["baseline_alarm"].to_numpy())}
     for col, name in (("if", "isolation_forest"), ("ae", "lstm_autoencoder"),
                       ("clf", "fault_classifier"), ("combined", "combined"),

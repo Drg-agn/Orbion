@@ -34,21 +34,21 @@
     "natural_events_flagged": 0.52
   },
   "lstm_autoencoder": {
-    "roc_auc": 0.555,
-    "precision": 0.7269,
-    "recall": 0.0286,
-    "f1": 0.0551,
-    "false_alarm_rate": 0.00363,
+    "roc_auc": 0.553,
+    "precision": 0.7106,
+    "recall": 0.0246,
+    "f1": 0.0476,
+    "false_alarm_rate": 0.00339,
     "episode_detection": {
-      "bias": 0.229,
+      "bias": 0.2,
       "drift": 0.043,
-      "noise": 0.488,
-      "spike": 0.324,
+      "noise": 0.419,
+      "spike": 0.27,
       "stuck": 0.029
     },
-    "median_delay_min": 135.0,
+    "median_delay_min": 175.0,
     "natural_events": 25,
-    "natural_events_flagged": 0.16
+    "natural_events_flagged": 0.12
   },
   "fault_classifier": {
     "roc_auc": 0.6278,
@@ -68,13 +68,13 @@
     "natural_events_flagged": 0.0
   },
   "combined": {
-    "roc_auc": 0.6256,
-    "precision": 0.8333,
-    "recall": 0.1108,
-    "f1": 0.1955,
-    "false_alarm_rate": 0.00749,
+    "roc_auc": 0.6244,
+    "precision": 0.8354,
+    "recall": 0.1106,
+    "f1": 0.1953,
+    "false_alarm_rate": 0.00736,
     "episode_detection": {
-      "bias": 0.543,
+      "bias": 0.514,
       "drift": 0.609,
       "noise": 1.0,
       "spike": 0.811,
@@ -85,13 +85,13 @@
     "natural_events_flagged": 0.52
   },
   "combined_ae_clf": {
-    "roc_auc": 0.6359,
-    "precision": 0.8735,
+    "roc_auc": 0.6345,
+    "precision": 0.8783,
     "recall": 0.1095,
-    "f1": 0.1945,
-    "false_alarm_rate": 0.00536,
+    "f1": 0.1947,
+    "false_alarm_rate": 0.00512,
     "episode_detection": {
-      "bias": 0.543,
+      "bias": 0.514,
       "drift": 0.478,
       "noise": 1.0,
       "spike": 0.811,
@@ -99,7 +99,7 @@
     },
     "median_delay_min": 20.0,
     "natural_events": 25,
-    "natural_events_flagged": 0.16
+    "natural_events_flagged": 0.12
   },
   "fault_type_accuracy": 0.9653,
   "classifier_recall_by_fault": {
@@ -142,10 +142,10 @@
     }
   ],
   "lstm_recall_by_fault": {
-    "bias": 0.025,
+    "bias": 0.031,
     "drift": 0.001,
-    "noise": 0.29,
-    "spike": 0.324,
-    "stuck": 0.008
+    "noise": 0.234,
+    "spike": 0.27,
+    "stuck": 0.01
   }
 }

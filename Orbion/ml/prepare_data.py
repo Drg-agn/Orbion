@@ -1,5 +1,5 @@
 """
-Step 1 - download, clean, split, and add labelled faults.
+Step 1 - download, clean, split, add simulated neighbours, and add labelled faults.
 
 Default dataset: Jena Climate (Max Planck Institute for Biogeochemistry),
 one station, 10-minute readings 2009-2016, with T, p, rh and Tdew -
@@ -8,6 +8,14 @@ the same interval and variables SkyGuard uses.
   python ml/prepare_data.py                    # Jena (downloads ~13 MB)
   python ml/prepare_data.py --csv my.csv       # your own data in backend format:
                                                # timestamp,station_id,temperature,humidity,pressure
+
+Neighbours (new):
+  Jena is a single station, so there are no real neighbours. For every series we
+  simulate NEIGHBOURS healthy stations nearby: same weather, plus a constant
+  offset (altitude / siting), a slowly varying local difference, and small sensor
+  noise. Their per-timestamp MEDIAN is saved as nbr_temp, nbr_pres, nbr_hum.
+  Neighbours are never faulted; faults are injected into the target station only.
+  This is a SIMULATION - say so in the paper. Real multi-station data is the real test.
 
 Outputs in ml/data/:
   train.csv.gz         clean       -> unsupervised models learn "normal" from this only
@@ -19,6 +27,7 @@ Outputs in ml/data/:
 import argparse, io, zipfile
 import numpy as np
 import pandas as pd
+from scipy.signal import lfilter
 
 from common import DATA
 from inject_faults import inject
@@ -28,6 +37,14 @@ JENA_URL = "https://storage.googleapis.com/tensorflow/tf-keras-datasets/jena_cli
 BOUNDS = {"temp": (-40, 55), "pressure": (850, 1100), "humidity": (0, 100)}
 MAX_GAP = 6          # fill gaps up to 1 hour by interpolation; longer gaps split the series
 MIN_SEGMENT = 144    # drop pieces shorter than 1 day
+
+# ---- simulated neighbour stations -------------------------------------------------
+NEIGHBOURS = 3
+NB_COLS = {"temp": "nbr_temp", "pressure": "nbr_pres", "humidity": "nbr_hum"}
+NB_OFFSET = {"temp": 0.5, "pressure": 0.8, "humidity": 3.0}    # constant per-neighbour offset (std)
+NB_LOCAL = {"temp": 0.6, "pressure": 0.3, "humidity": 3.0}     # slow local weather difference (std)
+NB_NOISE = {"temp": 0.1, "pressure": 0.05, "humidity": 0.5}    # sensor noise (std)
+NB_PHI = 0.995                                                  # memory of local difference (~33 h)
 
 
 def load_jena() -> pd.DataFrame:
@@ -69,6 +86,34 @@ def clean_station(g: pd.DataFrame, sid: str) -> pd.DataFrame:
     return pd.concat(pieces, ignore_index=True) if pieces else pd.DataFrame()
 
 
+def _local_difference(n: int, sigma: float, rng: np.random.Generator) -> np.ndarray:
+    """AR(1) series with stationary std `sigma`: how a neighbour's weather drifts from ours."""
+    e = rng.normal(0, sigma * np.sqrt(1 - NB_PHI ** 2), n)
+    x = lfilter([1.0], [1.0, -NB_PHI], e)
+    return x + rng.normal(0, sigma) * (NB_PHI ** np.arange(n))   # start from the stationary distribution
+
+
+def add_neighbours(df: pd.DataFrame, rng: np.random.Generator, k: int = NEIGHBOURS) -> pd.DataFrame:
+    """Add nbr_temp / nbr_pres / nbr_hum: median of k simulated healthy neighbours, per series."""
+    out = []
+    for _, g in df.groupby("station_id", sort=True):
+        g = g.sort_values("timestamp").reset_index(drop=True)
+        n = len(g)
+        for var, col in NB_COLS.items():
+            series = []
+            for _ in range(k):
+                x = (g[var].to_numpy(float)
+                     + rng.normal(0, NB_OFFSET[var])
+                     + _local_difference(n, NB_LOCAL[var], rng)
+                     + rng.normal(0, NB_NOISE[var], n))
+                if var == "humidity":
+                    x = np.clip(x, 0, 100)
+                series.append(x)
+            g[col] = np.round(np.median(series, axis=0), 2)
+        out.append(g)
+    return pd.concat(out, ignore_index=True)
+
+
 def add_faults(df: pd.DataFrame, seed: int, gap: int = 400) -> pd.DataFrame:
     rng, out, next_id = np.random.default_rng(seed), [], 0
     for sid, g in df.groupby("station_id"):
@@ -105,6 +150,11 @@ def main():
     for name, part in splits.items():
         if part.empty:
             raise SystemExit(f"'{name}' split is empty - adjust --val-start / --test-start for your data")
+
+    # simulated healthy neighbours, added BEFORE faults so only the target station gets faulted
+    nrng = np.random.default_rng(a.seed + 99)
+    splits = {name: add_neighbours(part, nrng) for name, part in splits.items()}
+    print(f"Added {NEIGHBOURS} simulated neighbours per series (median saved as nbr_temp / nbr_pres / nbr_hum)")
 
     finish(splits["train"]).assign(fault="none", fault_var="none", episode_id=-1, fault_size=0.0, ep_pos=-1).to_csv(DATA / "train.csv.gz", index=False)
     # denser faults in the training copy = more examples for the classifier
